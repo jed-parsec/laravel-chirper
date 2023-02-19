@@ -16,7 +16,9 @@ class ChirpController extends Controller
      */
     public function index(): View
     {
-        return view ('chirps.index');
+        return view ('chirps.index', ['chirps' => Chirp::with('user')->latest()->get(),]);
+
+        // Here we've used Eloquent's with method to eager-load every Chirp's associated user. We've also used the latest scope to return the records in reverse-chronological order.
     }
 
     /**
